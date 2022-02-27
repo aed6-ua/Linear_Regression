@@ -2,13 +2,15 @@
 #include<conio.h>
 #include<time.h>
 
-#define S 30000
+#define S 100000000
 
 int main()
 {
 	int n, i;
 	double time = 0.0;
-	float x[S], y[S], sumX = 0, sumX2 = 0, sumY = 0, sumXY = 0, a, b;
+	float* x;
+	float* y;
+	float sumX = 0, sumX2 = 0, sumY = 0, sumXY = 0, a, b;
 	/* Input */
 	/*printf("How many data points?\n");
 	scanf_s("%d", &n);
@@ -21,28 +23,45 @@ int main()
 		scanf_s("%f", &y[i]);
 	}*/
 
+	x = malloc(S * sizeof(float));
+	y = malloc(S * sizeof(float));
+	clock_t begin;
+
 	//Default vector
-	for (i = 0; i < S; i++)
+	if (x && y)
 	{
-		x[i] = i;
-		y[i] = (i + 1.0) / 3;
+		for (i = 0; i < S; i++)
+		{
+			x[i] = i;
+			y[i] = (i + 1.0) / 3;
+		}
+
+		//Start timer
+		begin = clock();
+
+		/* Calculating Required Sum */
+		for (i = 1;i < S;i++)
+		{
+			sumX = sumX + x[i];
+			sumX2 = sumX2 + x[i] * x[i];
+			sumY = sumY + y[i];
+			sumXY = sumXY + x[i] * y[i];
+		}
+		free(x);
+		free(y);
 	}
-
-	//Start timer
-	clock_t begin = clock();
-
-	/* Calculating Required Sum */
-	for (i = 1;i < S;i++)
+	else 
 	{
-		sumX = sumX + x[i];
-		sumX2 = sumX2 + x[i] * x[i];
-		sumY = sumY + y[i];
-		sumXY = sumXY + x[i] * y[i];
+		printf("\nAlloc failed");
+		return 1;
 	}
+		
+	
+
 	/* Calculating a and b */
 	b = (S * sumXY - sumX * sumY) / (S * sumX2 - sumX * sumX);
 	a = (sumY - b * sumX) / S;
-
+	
 	//Stop timer
 	clock_t end = clock();
 	time += (double)(end - begin) / CLOCKS_PER_SEC;
