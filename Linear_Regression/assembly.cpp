@@ -47,31 +47,31 @@ int main() {
 			imul eax, [ebp + ecx*4 + 4]		//XY
 			add esi, eax					//Guardar sumXY
 			add ecx, 2						//Incrementar contador
-			mov eax, 20
+			mov eax, 20					//Numero de repeticiones
 			cmp ecx, eax
 			jl loopstart				//Seguir si contador<S
 
-		imul esi, 10
+		imul esi, 10		//S*sumXY
 		mov eax, ebx
-		imul eax, edi
-		sub esi, eax
-		imul edx, 10
+		imul eax, edi	//sumX*sumY
+		sub esi, eax	//(S * sumXY - sumX * sumY)
+		imul edx, 10	//S*sumX2
 		mov eax, ebx
-		imul eax, ebx
-		sub edx, eax
+		imul eax, ebx	//sumX*sumX
+		sub edx, eax	//(S * sumX2 - sumX * sumX)
 		mov eax, esi
 		mov esi, edx
 		xor edx, edx
-		div esi					//b
-		mov b, eax
+		div esi			//(S * sumXY - sumX * sumY) / (S * sumX2 - sumX * sumX)
+		mov b, eax		//b
 
-		imul eax, ebx
-		sub edi, eax
+		imul eax, ebx		//b * sumX
+		sub edi, eax		//(sumY - b * sumX)
 		mov eax, edi
-		mov ebx, 10
+		mov ebx, 10		
 		xor edx, edx
-		div ebx					//a
-		mov a, eax
+		div ebx				//(sumY - b * sumX) / S	
+		mov a, eax		//a
 	}
 	//Stop timer
 	clock_t end = clock();
