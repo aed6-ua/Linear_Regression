@@ -8,9 +8,10 @@ int main()
 {
 	int n, i;
 	double time = 0.0;
-	float* x;
-	float* y;
-	float sumX = 0, sumX2 = 0, sumY = 0, sumXY = 0, a, b;
+	int* x;
+	int* y;
+	int sumX = 0, sumX2 = 0, sumY = 0, sumXY = 0;
+	float a, b;
 	/* Input */
 	/*printf("How many data points?\n");
 	scanf_s("%d", &n);
@@ -23,8 +24,8 @@ int main()
 		scanf_s("%f", &y[i]);
 	}*/
 
-	x = malloc(S * sizeof(float));
-	y = malloc(S * sizeof(float));
+	x = malloc(S * sizeof(int));
+	y = malloc(S * sizeof(int));
 	clock_t begin;
 
 	//Default vector
@@ -33,7 +34,7 @@ int main()
 		for (i = 0; i < S; i++)
 		{
 			x[i] = i;
-			y[i] = (i + 1.0) / 3;
+			y[i] = (i + 1) / 3;
 		}
 
 		//Start timer
@@ -59,8 +60,8 @@ int main()
 	
 
 	/* Calculating a and b */
-	b = (S * sumXY - sumX * sumY) / (S * sumX2 - sumX * sumX);
-	a = (sumY - b * sumX) / S;
+	b = (float)(S * sumXY - sumX * sumY) / (S * sumX2 - sumX * sumX);
+	a = (float)(sumY - b * sumX) / S;
 	
 	//Stop timer
 	clock_t end = clock();
