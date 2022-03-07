@@ -8,8 +8,8 @@ int main()
 {
 	int n, i;
 	double time = 0.0;
-	int* x;
-	int* y;
+	int x[S];
+	int y[S];
 	int sumX = 0, sumX2 = 0, sumY = 0, sumXY = 0;
 	float a, b;
 	/* Input */
@@ -23,40 +23,26 @@ int main()
 		printf("y[%d]=", i);
 		scanf_s("%f", &y[i]);
 	}*/
-
-	x = malloc(S * sizeof(int));
-	y = malloc(S * sizeof(int));
 	clock_t begin;
 
 	//Default vector
-	if (x && y)
+	for (i = 0; i < S; i++)
 	{
-		for (i = 0; i < S; i++)
-		{
-			x[i] = i;
-			y[i] = i;
-		}
-
-		//Start timer
-		begin = clock();
-		for (int j = 0; j < 100000; ++j) {
-			/* Calculating Required Sum */
-			for (i = 1;i < S;i++)
-			{
-				sumX = sumX + x[i];
-				sumX2 = sumX2 + x[i] * x[i];
-				sumY = sumY + y[i];
-				sumXY = sumXY + x[i] * y[i];
-			}
-		}
-		
-		free(x);
-		free(y);
+		x[i] = i;
+		y[i] = i;
 	}
-	else 
-	{
-		printf("\nAlloc failed");
-		return 1;
+
+	//Start timer
+	begin = clock();
+	for (int j = 0; j < 100000; ++j) {
+		/* Calculating Required Sum */
+		for (i = 1;i < S;i++)
+		{
+			sumX = sumX + x[i];
+			sumX2 = sumX2 + x[i] * x[i];
+			sumY = sumY + y[i];
+			sumXY = sumXY + x[i] * y[i];
+		}
 	}
 		
 	
