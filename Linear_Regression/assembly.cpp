@@ -1,6 +1,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <fstream>
 
 #define S 10000
 
@@ -78,6 +79,18 @@ int main() {
 	std::cout << "Values are: a = " << a << " and b = " << b;
 	std::cout << "\nEquation of best fit is: y = " << a <<" + " << b << "x";
 	std::cout << "\nTime elapsed is " << time << "seconds";
+
+	//Escribir en un fichero la salida
+	std::ofstream outfile;
+
+	outfile.open("bench_result_assembler.txt", std::ios_base::app);
+	if (outfile.is_open()) {
+		outfile << "\n" << time;
+	}
+	else {
+		std::cout << "Fail opening the file" << std::endl;
+	}
+
 	getchar();
 	return(0);
 }

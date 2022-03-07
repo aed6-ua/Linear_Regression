@@ -6,7 +6,7 @@
 
 int main()
 {
-	int n, i;
+	int i;
 	double time = 0.0;
 	int x[S];
 	int y[S];
@@ -44,13 +44,13 @@ int main()
 			sumXY = sumXY + x[i] * y[i];
 		}
 	}
-		
-	
+
+
 
 	/* Calculating a and b */
 	b = (float)(S * sumXY - sumX * sumY) / (S * sumX2 - sumX * sumX);
 	a = (float)(sumY - b * sumX) / S;
-	
+
 	//Stop timer
 	clock_t end = clock();
 	time += (double)(end - begin) / CLOCKS_PER_SEC;
@@ -59,6 +59,18 @@ int main()
 	printf("Values are: a=%0.2f and b = %0.2f", a, b);
 	printf("\nEquation of best fit is: y = %0.2f + %0.2fx", a, b);
 	printf("\nTime elapsed si %f seconds", time);
+
+	FILE *stream;
+	errno_t err = fopen_s(&stream,"bench_result_c.txt", "a");
+	if (err == 0) {
+		fprintf(stream, "\n%f", time);
+		fclose(stream);
+	}
+	else {
+		printf("\nError opening file");
+	}
+	
+
 	_getch();
 	return(0);
 }
