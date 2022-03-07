@@ -2,30 +2,15 @@
 #include <cstdlib>
 #include <iostream>
 
-#define S 1000
+#define S 10000
 
 
 int main() {
 	
-	int a, b;
+	int a, b, contador;
 	int vectorsize = S;
 	int doublevectorsize = S * 2;
 	int vector[S*2];
-	//int* vector;
-	//vector = (int*) malloc(S * sizeof(int) * 2);
-
-	/*if (vector)
-	{
-		for (int i = 0; i < S*2; i+=2)
-		{
-			vector[i] = i;
-			vector[i+1] = i;
-		}
-	}
-	else {
-		std::cout << "\nAlloc failed" << std::endl;
-		return -1;
-	}*/
 
 	for (int i = 0; i < S * 2; i += 2)
 	{
@@ -34,8 +19,10 @@ int main() {
 	}
 
 	clock_t begin = clock();
-	
+	contador = 0;
 	__asm {
+	start:
+		
 		mov ecx, 0		//Inicializar contador del bucle
 		mov ebx, 0		//sumX
 		mov edx, 0		//sumX^2
@@ -48,7 +35,7 @@ int main() {
 			add ebx, [vector + ecx*4]				//sumX
 			add edi, [vector + ecx*4 + 4]		//sumY
 			mov eax, [vector + ecx*4]
-			imul eax, eax		//X^2
+			imul eax, eax					//X^2
 			add edx, eax					//Guardar sumX^2
 			mov eax, [vector + ecx*4]
 			imul eax, [vector + ecx*4 + 4]		//XY
@@ -78,13 +65,15 @@ int main() {
 		mov ebx, vectorsize		
 		xor edx, edx
 		div ebx				//(sumY - b * sumX) / S	
-		mov a, eax		//a
+		mov a, eax			//a
+		add contador, 1
+		cmp contador, 1000
+		jl start
 	}
 	//Stop timer
 	clock_t end = clock();
 	double time = (double)(end - begin) / CLOCKS_PER_SEC;
-	//free(vector);
-	//vector = nullptr;
+
 	/* Displaying value of a, b and time elapsed */
 	std::cout << "Values are: a = " << a << " and b = " << b;
 	std::cout << "\nEquation of best fit is: y = " << a <<" + " << b << "x";

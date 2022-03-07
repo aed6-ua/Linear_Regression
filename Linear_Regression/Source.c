@@ -2,7 +2,7 @@
 #include<conio.h>
 #include<time.h>
 
-#define S 100000000
+#define S 10000
 
 int main()
 {
@@ -39,15 +39,17 @@ int main()
 
 		//Start timer
 		begin = clock();
-
-		/* Calculating Required Sum */
-		for (i = 1;i < S;i++)
-		{
-			sumX = sumX + x[i];
-			sumX2 = sumX2 + x[i] * x[i];
-			sumY = sumY + y[i];
-			sumXY = sumXY + x[i] * y[i];
+		for (int j = 0; j < 1000; ++j) {
+			/* Calculating Required Sum */
+			for (i = 1;i < S;i++)
+			{
+				sumX = sumX + x[i];
+				sumX2 = sumX2 + x[i] * x[i];
+				sumY = sumY + y[i];
+				sumXY = sumXY + x[i] * y[i];
+			}
 		}
+		
 		free(x);
 		free(y);
 	}
