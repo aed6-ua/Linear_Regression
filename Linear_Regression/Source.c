@@ -34,12 +34,12 @@ int main()
 		for (i = 0; i < S; i++)
 		{
 			x[i] = i;
-			y[i] = (i + 1) / 3;
+			y[i] = i;
 		}
 
 		//Start timer
 		begin = clock();
-		for (int j = 0; j < 1000; ++j) {
+		for (int j = 0; j < 100000; ++j) {
 			/* Calculating Required Sum */
 			for (i = 1;i < S;i++)
 			{

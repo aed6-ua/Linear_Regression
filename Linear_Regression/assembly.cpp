@@ -67,7 +67,7 @@ int main() {
 		div ebx				//(sumY - b * sumX) / S	
 		mov a, eax			//a
 		add contador, 1
-		cmp contador, 1000
+		cmp contador, 100000
 		jl start
 	}
 	//Stop timer
@@ -78,5 +78,6 @@ int main() {
 	std::cout << "Values are: a = " << a << " and b = " << b;
 	std::cout << "\nEquation of best fit is: y = " << a <<" + " << b << "x";
 	std::cout << "\nTime elapsed is " << time << "seconds";
+	getchar();
 	return(0);
 }
