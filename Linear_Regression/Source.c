@@ -60,6 +60,8 @@ int main()
 	printf("\nEquation of best fit is: y = %0.2f + %0.2fx", a, b);
 	printf("\nTime elapsed si %f seconds", time);
 
+
+	//Output to file
 	FILE *stream;
 	errno_t err = fopen_s(&stream,"bench_result_c.txt", "a");
 	if (err == 0) {
