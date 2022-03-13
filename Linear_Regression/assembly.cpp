@@ -8,15 +8,16 @@
 
 int main() {
 	
-	int a, b, contador;
+	float a, b;
+	int contador;
 	int vectorsize = S;
 	int doublevectorsize = S * 2;
-	int vector[S*2];
+	float vector[S*2];
 
 	for (int i = 0; i < S * 2; i += 2)
 	{
-		vector[i] = i;
-		vector[i + 1] = i;
+		vector[i] = (float)i;
+		vector[i + 1] = (float)i;
 	}
 
 	clock_t begin = clock();

@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Linear_Regression", "Linear
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Linear_Regression_Assembly", "Linear_Regression_Assembly\Linear_Regression_Assembly.vcxproj", "{7A802E03-C93D-4AE1-80CC-661DEAD56DF1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Linear_Regression_SSE", "Linear_Regression_SSE\Linear_Regression_SSE.vcxproj", "{436BA29A-2E4D-440F-8806-7220BE9CE825}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{7A802E03-C93D-4AE1-80CC-661DEAD56DF1}.Release|x64.Build.0 = Release|x64
 		{7A802E03-C93D-4AE1-80CC-661DEAD56DF1}.Release|x86.ActiveCfg = Release|Win32
 		{7A802E03-C93D-4AE1-80CC-661DEAD56DF1}.Release|x86.Build.0 = Release|Win32
+		{436BA29A-2E4D-440F-8806-7220BE9CE825}.Debug|x64.ActiveCfg = Debug|x64
+		{436BA29A-2E4D-440F-8806-7220BE9CE825}.Debug|x64.Build.0 = Debug|x64
+		{436BA29A-2E4D-440F-8806-7220BE9CE825}.Debug|x86.ActiveCfg = Debug|Win32
+		{436BA29A-2E4D-440F-8806-7220BE9CE825}.Debug|x86.Build.0 = Debug|Win32
+		{436BA29A-2E4D-440F-8806-7220BE9CE825}.Release|x64.ActiveCfg = Release|x64
+		{436BA29A-2E4D-440F-8806-7220BE9CE825}.Release|x64.Build.0 = Release|x64
+		{436BA29A-2E4D-440F-8806-7220BE9CE825}.Release|x86.ActiveCfg = Release|Win32
+		{436BA29A-2E4D-440F-8806-7220BE9CE825}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
