@@ -2,7 +2,7 @@
 #include<conio.h>
 #include<time.h>
 
-#define S 10000
+#define S 1000
 
 int main()
 {
