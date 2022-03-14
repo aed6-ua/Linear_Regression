@@ -8,9 +8,9 @@ int main()
 {
 	int i;
 	double time = 0.0;
-	float x[S];
-	float y[S];
-	float sumX = 0, sumX2 = 0, sumY = 0, sumXY = 0;
+	int x[S];
+	int y[S];
+	int sumX = 0, sumX2 = 0, sumY = 0, sumXY = 0;
 	float a, b;
 	/* Input */
 	/*printf("How many data points?\n");
@@ -28,8 +28,8 @@ int main()
 	//Default vector
 	for (i = 0; i < S; i++)
 	{
-		x[i] = (float)i;
-		y[i] = (float)i;
+		x[i] = i;
+		y[i] = i;
 	}
 
 	//Start timer

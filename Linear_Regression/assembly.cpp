@@ -12,12 +12,12 @@ int main() {
 	int contador;
 	int vectorsize = S;
 	int doublevectorsize = S * 2;
-	float vector[S*2];
+	int vector[S*2];
 
 	for (int i = 0; i < S * 2; i += 2)
 	{
-		vector[i] = (float)i;
-		vector[i + 1] = (float)i;
+		vector[i] = i;
+		vector[i + 1] = i;
 	}
 
 	clock_t begin = clock();
