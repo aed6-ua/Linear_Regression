@@ -18,10 +18,12 @@ int main() {
 	int sumX;
 	int sumY;
 
+	srand(time(0));
+
 	for (int i = 0; i < S * 2; i += 2)
 	{
-		vector[i] = i;
-		vector[i + 1] = i;
+		vector[i] = rand() % S;
+		vector[i + 1] = rand() % S;
 	}
 
 	clock_t begin = clock();

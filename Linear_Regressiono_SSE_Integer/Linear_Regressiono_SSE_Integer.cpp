@@ -9,7 +9,6 @@ double timeElapsed = 0;
 
 void ensamblador() {
 
-	int contador;
 	int vectorsize = S;
 	int x[S];
 	int y[S];
@@ -18,32 +17,40 @@ void ensamblador() {
 	int sumX;
 	int sumY;
 
-
+	srand(time(0));
 
 	for (int i = 0; i < S; i++)
 	{
-		x[i] = i;
-		y[i] = i;
+		x[i] = rand() % S;
+		y[i] = rand() % S;
 	}
 	clock_t begin = clock();
-	contador = 0;
-	int repeticiones = S / 4;
+	int contador = 0;
+	int repeticiones = 0;
+	int resto = 0;
 
 	__asm {
-		//push	ebx			//save EBX(warning :frame pointer register)
-							//we save the data in EBX to avoid bugsdue to warnings C4731
-		mov edi, 0			//Contador loop función
+		xor edi, edi			//Contador loop función
+
 		start :
-		//mov esi, x				//puntero a vector x
-		//mov edi, y				//puntero a vector y
-			mov ecx, 0				//loop counters
+			
 			mov eax, vectorsize		//tamano vector
-			mov esi, 0
-			mov ebx, 0
+			xor edx, edx
+			xor esi, esi
+			xor ebx, ebx
 			xorps xmm0, xmm0		//xmm0 a 0		
 			xorps xmm1, xmm1		//xmm1 a 0
 			xorps xmm3, xmm3		//xmm3 a 0
 			xorps xmm5, xmm5		//xmm5 a 0
+
+			mov ecx, 4
+			div ecx					//Calcular número de repeticiones necesarias
+			mov repeticiones, eax
+			add edx, eax
+			mov resto, edx			//Cantidad de números sobrantes (<4) + repeticiones (numeros totales)
+
+			mov eax, vectorsize
+			xor ecx, ecx				//loop counters
 
 		loop_start :
 			movdqu xmm6, [x + esi]		//Cargar 128 bits desde la dirección de memoria del vector X
@@ -65,7 +72,31 @@ void ensamblador() {
 			shl esi, 4				//Multìplicar el valor del contador por 16
 			cmp ecx, repeticiones	//comparar contador con numero de repeticiones
 			jl loop_start
+			cmp ecx, resto
+			je terminar
+			
+		sobrantes:
+			mov eax, [x + esi]
+			xorps xmm2, xmm2
+			movd xmm2, eax
+			paddd xmm0, xmm2
+			mov eax, [y + esi]
+			xorps xmm4, xmm4
+			movd xmm4, eax
+			paddd xmm1, xmm4
+			pmulld xmm4, xmm2
+			paddd xmm5, xmm4
+			pmulld xmm2, xmm2
+			paddd xmm3, xmm2
 
+			inc ecx
+			mov esi, ecx
+			shl esi, 2
+			cmp ecx, resto
+			jl sobrantes
+
+			
+		terminar:
 			mov ecx, 0				//Poner ecx a 0
 
 			phaddd xmm0, xmm0
