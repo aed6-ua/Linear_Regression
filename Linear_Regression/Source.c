@@ -73,6 +73,6 @@ int main()
 	}
 	
 
-	_getch();
+	//_getch();
 	return(0);
 }

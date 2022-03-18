@@ -13,6 +13,10 @@ int main() {
 	int vectorsize = S;
 	int doublevectorsize = S * 2;
 	int vector[S*2];
+	int dividendo;
+	int divisor;
+	int sumX;
+	int sumY;
 
 	for (int i = 0; i < S * 2; i += 2)
 	{
@@ -51,23 +55,22 @@ int main() {
 		mov eax, ebx
 		imul eax, edi	//sumX*sumY
 		sub esi, eax	//(S * sumXY - sumX * sumY)
+		mov dividendo, esi
 		imul edx, vectorsize	//S*sumX2
 		mov eax, ebx
 		imul eax, ebx	//sumX*sumX
 		sub edx, eax	//(S * sumX2 - sumX * sumX)
-		mov eax, esi
-		mov esi, edx
-		xor edx, edx
-		div esi			//(S * sumXY - sumX * sumY) / (S * sumX2 - sumX * sumX)
-		mov b, eax		//b
+		mov divisor, edx
+		fild dividendo  //Cargar el dividendo en la pila del coprocesador (y convertirlo a float)
+		fidiv divisor		//Dividir el float del tope de la pila por un entero de la memoria
+		fst b			//Almacenar el número de la cima de la pila a la dirección de memoria b
 
-		imul eax, ebx		//b * sumX
-		sub edi, eax		//(sumY - b * sumX)
-		mov eax, edi
-		mov ebx, vectorsize		
-		xor edx, edx
-		div ebx				//(sumY - b * sumX) / S	
-		mov a, eax			//a
+		mov sumX, ebx
+		fmul sumX		//b * sumX
+		mov sumY, edi
+		fsubr sumY		//(sumY - b * sumX)
+		fdiv vectorsize	//(sumY - b * sumX) / S	
+		fstp a			//Guardar a
 		add contador, 1
 		cmp contador, 100000
 		jl start
@@ -92,6 +95,6 @@ int main() {
 		std::cout << "Fail opening the file" << std::endl;
 	}
 
-	getchar();
+	//getchar();
 	return(0);
 }

@@ -13,10 +13,10 @@ void ensamblador() {
 	int vectorsize = S;
 	int x[S];
 	int y[S];
-	//float *x=new float[S];
-	//float *y=new float[S];
-	//float *x = (float*)malloc(S * sizeof(float));
-	//float *y = (float*)malloc(S * sizeof(float));
+	int dividendo;
+	int divisor;
+	int sumX;
+	int sumY;
 
 
 
@@ -70,7 +70,6 @@ void ensamblador() {
 
 			phaddd xmm0, xmm0
 			phaddd xmm0, xmm0		//sumX final
-			movd eax, xmm0
 
 			phaddd xmm1, xmm1
 			phaddd xmm1, xmm1		//sumY final
@@ -81,31 +80,34 @@ void ensamblador() {
 
 			phaddd xmm5, xmm5
 			phaddd xmm5, xmm5		//sumXY final
+			movd eax, xmm5
 
 			imul eax, vectorsize			//S*sumXY
 			movd ecx, xmm0
 			imul ebx, ecx				//sumY*sumX
 			sub eax, ebx				//(S * sumXY - sumX * sumY)
+			mov dividendo, eax
 			movd ebx, xmm3
 			imul ebx, vectorsize		//S*sumX^2
 			imul ecx, ecx				//sumX*sumX
 
 			sub ebx, ecx				//(S * sumX2 - sumX * sumX)
-			xor edx, edx
-			div ecx						//(S * sumXY - sumX * sumY) / (S * sumX2 - sumX * sumX)
-			mov b, eax
+			mov divisor, ebx
+			
+			//b=(S * sumXY - sumX * sumY) / (S * sumX2 - sumX * sumX)
+			fild dividendo  //Cargar el dividendo en la pila del coprocesador (y convertirlo a float)
+			fidiv divisor		//Dividir el float del tope de la pila por un entero de la memoria
+			fst b			//Almacenar el número de la cima de la pila a la dirección de memoria b
 
-			movd ebx, xmm0
-			imul ebx, eax			//b*sumX
-			movd eax, xmm1
-			sub eax, ebx				//(sumY - b * sumX)
-			xor edx, edx
-			mov ebx, vectorsize
-			div ebx					//(sumY - b * sumX) / S	
-			mov a, eax
+			movd sumX, xmm0
+			fmul sumX			//b*sumX
+			movd sumY, xmm1
+			fsubr sumY		//(sumY - b * sumX)
+			fdiv vectorsize	//(sumY - b * sumX) / S	
+			fstp a			//Guardar a
 
 			inc edi
-			cmp edi, 1
+			cmp edi, 100000
 			jl start
 
 	}
@@ -143,6 +145,6 @@ int main()
 		std::cout << "Fail opening the file" << std::endl;
 	}
 
-	getchar();
+	//getchar();
 	return(0);
 }
