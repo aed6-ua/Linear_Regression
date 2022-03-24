@@ -5,16 +5,16 @@
 #include <iostream>
 #include <fstream>
 
-#define S 10000
+#define vectorSize 10000
 float a, b;
 double timeElapsed=0;
 
 void ensamblador() {
 
 	int contador;
-	int vectorsize = S;
-	float x[S];
-	float y[S];
+	int vectorsize = vectorSize;
+	float x[vectorSize];
+	float y[vectorSize];
 	//float *x=new float[S];
 	//float *y=new float[S];
 	//float *x = (float*)malloc(S * sizeof(float));
@@ -22,7 +22,7 @@ void ensamblador() {
 
 
 
-	for (int i = 0; i < S; i++)
+	for (int i = 0; i < vectorSize; i++)
 	{
 		x[i] = (float)i;
 		y[i] = (float)i;

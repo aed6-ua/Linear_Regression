@@ -2,14 +2,14 @@
 #include<conio.h>
 #include<time.h>
 
-#define S 10000
+#define vectorSize 10000
 
 int main()
 {
 	int i;
 	double timeElapsed = 0.0;
-	int x[S];
-	int y[S];
+	int x[vectorSize];
+	int y[vectorSize];
 	int sumX = 0, sumX2 = 0, sumY = 0, sumXY = 0;
 	float a, b;
 	
@@ -18,17 +18,17 @@ int main()
 	clock_t begin;
 
 	//Default vector
-	for (i = 0; i < S; i++)
+	for (i = 0; i < vectorSize; i++)
 	{
-		x[i] = rand() % S;
-		y[i] = rand() % S;
+		x[i] = rand() % vectorSize;
+		y[i] = rand() % vectorSize;
 	}
 
 	//Start timer
 	begin = clock();
 	for (int j = 0; j < 100000; ++j) {
 		/* Calculating Required Sum */
-		for (i = 1;i < S;i++)
+		for (i = 1;i < vectorSize;i++)
 		{
 			sumX = sumX + x[i];
 			sumX2 = sumX2 + x[i] * x[i];
@@ -40,8 +40,8 @@ int main()
 
 
 	/* Calculating a and b */
-	b = (float)(S * sumXY - sumX * sumY) / (S * sumX2 - sumX * sumX);
-	a = (float)(sumY - b * sumX) / S;
+	b = (float)(vectorSize * sumXY - sumX * sumY) / (vectorSize * sumX2 - sumX * sumX);
+	a = (float)(sumY - b * sumX) / vectorSize;
 
 	//Stop timer
 	clock_t end = clock();

@@ -3,15 +3,15 @@
 #include <iostream>
 #include <fstream>
 
-#define S 10000
+#define vectorSize 10000
 float a, b;
 double timeElapsed = 0;
 
 void ensamblador() {
 
-	int vectorsize = S;
-	int x[S];
-	int y[S];
+	int vectorsize = vectorSize;
+	int x[vectorSize];
+	int y[vectorSize];
 	int dividendo;
 	int divisor;
 	int sumX;
@@ -19,10 +19,10 @@ void ensamblador() {
 
 	srand(time(0));
 
-	for (int i = 0; i < S; i++)
+	for (int i = 0; i < vectorSize; i++)
 	{
-		x[i] = rand() % S;
-		y[i] = rand() % S;
+		x[i] = rand() % vectorSize;
+		y[i] = rand() % vectorSize;
 	}
 	clock_t begin = clock();
 	int contador = 0;

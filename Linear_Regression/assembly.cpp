@@ -3,16 +3,16 @@
 #include <iostream>
 #include <fstream>
 
-#define S 10000
+#define vectorSize 10000
 
 
 int main() {
 	
 	float a, b;
 	int contador;
-	int vectorsize = S;
-	int doublevectorsize = S * 2;
-	int vector[S*2];
+	int vectorsize = vectorSize;
+	int doublevectorsize = vectorSize * 2;
+	int vector[vectorSize*2];
 	int dividendo;
 	int divisor;
 	int sumX;
@@ -20,10 +20,10 @@ int main() {
 
 	srand(time(0));
 
-	for (int i = 0; i < S * 2; i += 2)
+	for (int i = 0; i < vectorSize * 2; i += 2)
 	{
-		vector[i] = rand() % S;
-		vector[i + 1] = rand() % S;
+		vector[i] = rand() % vectorSize;
+		vector[i + 1] = rand() % vectorSize;
 	}
 
 	clock_t begin = clock();

@@ -9,7 +9,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Linear_Regression_Assembly"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Linear_Regression_SSE", "Linear_Regression_SSE\Linear_Regression_SSE.vcxproj", "{436BA29A-2E4D-440F-8806-7220BE9CE825}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Linear_Regressiono_SSE_Integer", "Linear_Regressiono_SSE_Integer\Linear_Regressiono_SSE_Integer.vcxproj", "{A1318DA9-3EE3-4107-A8D2-D1D640895DCC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Linear_Regression_SSE_Integer", "Linear_Regressiono_SSE_Integer\Linear_Regressiono_SSE_Integer.vcxproj", "{A1318DA9-3EE3-4107-A8D2-D1D640895DCC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bench_master", "Bench_master\Bench_master.vcxproj", "{A392F41B-C45E-4986-93F9-4E3173920825}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,14 @@ Global
 		{A1318DA9-3EE3-4107-A8D2-D1D640895DCC}.Release|x64.Build.0 = Release|x64
 		{A1318DA9-3EE3-4107-A8D2-D1D640895DCC}.Release|x86.ActiveCfg = Release|Win32
 		{A1318DA9-3EE3-4107-A8D2-D1D640895DCC}.Release|x86.Build.0 = Release|Win32
+		{A392F41B-C45E-4986-93F9-4E3173920825}.Debug|x64.ActiveCfg = Debug|x64
+		{A392F41B-C45E-4986-93F9-4E3173920825}.Debug|x64.Build.0 = Debug|x64
+		{A392F41B-C45E-4986-93F9-4E3173920825}.Debug|x86.ActiveCfg = Debug|Win32
+		{A392F41B-C45E-4986-93F9-4E3173920825}.Debug|x86.Build.0 = Debug|Win32
+		{A392F41B-C45E-4986-93F9-4E3173920825}.Release|x64.ActiveCfg = Release|x64
+		{A392F41B-C45E-4986-93F9-4E3173920825}.Release|x64.Build.0 = Release|x64
+		{A392F41B-C45E-4986-93F9-4E3173920825}.Release|x86.ActiveCfg = Release|Win32
+		{A392F41B-C45E-4986-93F9-4E3173920825}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
